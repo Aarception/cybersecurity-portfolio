@@ -12,7 +12,7 @@ Demonstrate proficiency in network protocol analysis using Wireshark and Linux c
 **Observation:**  
 - Wireshark launches with root privileges.  
 
-![Wireshark Launch](screenshots/Image (1).png)
+![Wireshark Launch](screenshots/Image%20(1).png)
 
 ---
 
@@ -23,7 +23,7 @@ Demonstrate proficiency in network protocol analysis using Wireshark and Linux c
 **Observation:**  
 - Capture begins on the selected interface.  
 
-![Interface Selection](screenshots/Image (2).png)
+![Interface Selection](screenshots/Image%20(2).png)
 
 ---
 
@@ -37,7 +37,7 @@ Demonstrate proficiency in network protocol analysis using Wireshark and Linux c
 **Observation:**  
 - Pages load successfully, generating HTTP/DNS traffic.  
 
-![Browser Traffic](screenshots/Image (3).png)
+![Browser Traffic](screenshots/Image%20(3).png)
 
 ---
 
@@ -48,7 +48,7 @@ Demonstrate proficiency in network protocol analysis using Wireshark and Linux c
 **Observation:**  
 - A list of captured packets is displayed in Wireshark.  
 
-![Captured Packets](screenshots/Image (4).png)
+![Captured Packets](screenshots/Image%20(4).png)
 
 ---
 
@@ -59,7 +59,7 @@ Demonstrate proficiency in network protocol analysis using Wireshark and Linux c
 **Observation:**  
 - Only HTTP traffic is displayed.  
 
-![HTTP Filter](screenshots/Image (5).png)
+![HTTP Filter](screenshots/Image%20(5).png)
 
 ---
 
@@ -70,7 +70,7 @@ Demonstrate proficiency in network protocol analysis using Wireshark and Linux c
 **Observation:**  
 - Only DNS traffic is displayed.  
 
-![DNS Filter](screenshots/Image (6).png)
+![DNS Filter](screenshots/Image%20(6).png)
 
 ---
 
@@ -84,9 +84,9 @@ Demonstrate proficiency in network protocol analysis using Wireshark and Linux c
 - All sites responded with 0% packet loss.  
 - RTT values varied across domains.  
 
-![Ping Google](screenshots/Image (7).png)  
-![Ping Wikipedia](screenshots/Image (8).png)  
-![Ping Tesla](screenshots/Image (9).png)
+![Ping Google](screenshots/Image%20(7).png)  
+![Ping Wikipedia](screenshots/Image%20(8).png)  
+![Ping Tesla](screenshots/Image%20(9).png)
 
 ---
 
@@ -97,7 +97,7 @@ Demonstrate proficiency in network protocol analysis using Wireshark and Linux c
 **Observation:**  
 - ICMP echo requests and replies are displayed.  
 
-![ICMP Filter](screenshots/Image (10).png)
+![ICMP Filter](screenshots/Image%20(10).png)
 
 ---
 
@@ -106,7 +106,7 @@ Demonstrate proficiency in network protocol analysis using Wireshark and Linux c
 - DNS queries for A and AAAA records.  
 - Responses include IPv4 and IPv6 addresses.  
 
-![DNS Query Response](screenshots/Image (11).png)
+![DNS Query Response](screenshots/Image%20(11).png)
 
 ---
 
@@ -117,7 +117,7 @@ Demonstrate proficiency in network protocol analysis using Wireshark and Linux c
 **Observation:**  
 - ASCII stream shows Tesla domain resolution via Akamai CDN.  
 
-![UDP Stream](screenshots/Image (12).png)
+![UDP Stream](screenshots/Image%20(12).png)
 
 ---
 
@@ -128,7 +128,7 @@ Demonstrate proficiency in network protocol analysis using Wireshark and Linux c
 **Observation:**  
 - Displays traffic to/from the specified IP.  
 
-![IP Filter](screenshots/Image (13).png)
+![IP Filter](screenshots/Image%20(13).png)
 
 ---
 
@@ -139,7 +139,7 @@ Demonstrate proficiency in network protocol analysis using Wireshark and Linux c
 **Observation:**  
 - Shows MAC/IP mapping for local devices.  
 
-![ARP Table](screenshots/Image (14).png)
+![ARP Table](screenshots/Image%20(14).png)
 
 ---
 
@@ -150,7 +150,7 @@ Demonstrate proficiency in network protocol analysis using Wireshark and Linux c
 **Observation:**  
 - Resolves to IPv4 and IPv6 addresses.  
 
-![NSLookup](screenshots/Image (15).png)
+![NSLookup](screenshots/Image%20(15).png)
 
 ---
 
@@ -161,7 +161,7 @@ Demonstrate proficiency in network protocol analysis using Wireshark and Linux c
 **Observation:**  
 - First hop responds, subsequent hops time out.  
 
-![Traceroute](screenshots/Image (16).png)
+![Traceroute](screenshots/Image%20(16).png)
 
 ---
 
@@ -173,7 +173,7 @@ Demonstrate proficiency in network protocol analysis using Wireshark and Linux c
 - Traffic shows ICMP requests/replies.  
 - Interpretation: No failed packets, normal latency.  
 
-![Filtered Traffic](screenshots/Image (17).png)
+![Filtered Traffic](screenshots/Image%20(17).png)
 
 ---
 
