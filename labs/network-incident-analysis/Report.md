@@ -6,7 +6,7 @@
 
 The tcpdump output contains several structural elements that describe how the DNS request and ICMP error responses were transmitted. These elements help classify the traffic and understand the failure.
 
-
+![UDP](screenshots/UDP.png)
 
 ### Timestamp
 
@@ -157,3 +157,4 @@ The network analysis shows that DNS requests sent via UDP to the DNS server at *
 * NAT misconfiguration preventing proper forwarding
 * IDS/IPS blocking DNS queries
 * DNS server using a non‑standard port
+
