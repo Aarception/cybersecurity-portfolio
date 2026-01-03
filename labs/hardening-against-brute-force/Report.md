@@ -51,7 +51,7 @@ The traffic pattern is consistent with a **malicious redirection** triggered by 
 
 ## Part 3: Recommended Remediation for Brute‑Force Attacks
 
-Apply **rate limiting** to authentication attempts to restrict repeated login attempts from automated tools.
+A suitable remediation is to implement rate limiting on authentication attempts. This prevents repeated login attempts from automated tools and reduces the effectiveness of brute‑force attacks. Additional measures include enforcing strong password policies and enabling multi‑factor authentication to ensure that compromised credentials alone cannot grant access.
 
 
 
