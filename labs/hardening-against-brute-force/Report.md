@@ -14,7 +14,7 @@ The workstation first communicated with `yummyrecipesforme.com` after resolving 
 Minutes later, the workstation issued a second DNS query for `greatrecipesforme.com`, which resolved to **192.0.2.172**. A new TCP session was created from a different ephemeral port, and another HTTP GET request was sent.
 
 
-![Hardening](screenshots/image%20(3).png)
+![Hardening](screenshots/image%20(4).png)
 
  The abrupt shift between two similarly named domains, combined with the change in destination IP space, indicates a likely redirection event rather than normal browsing behavior.
 
@@ -41,7 +41,7 @@ The sequence suggests the user was moved—intentionally or through malicious co
 * The second IP belongs to a different address block, reinforcing the likelihood of a spoofed or malicious destination.
 * No handshake failures or resets appear — the traffic is clean, which aligns with controlled redirection rather than network instability.
 
-![Hardening](screenshots/image%20(4).png)
+![Hardening](screenshots/image%20(3).png)
 
 ### Likely Cause
 
@@ -52,4 +52,5 @@ The traffic pattern is consistent with a **malicious redirection** triggered by 
 ## Part 3: Recommended Remediation for Brute‑Force Attacks
 
 Apply **rate limiting** to authentication attempts to restrict repeated login attempts from automated tools.
+
 
