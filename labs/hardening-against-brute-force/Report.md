@@ -31,7 +31,7 @@ The sequence suggests the user was moved—intentionally or through malicious co
 * **14:20:32** — DNS lookup for `greatrecipesforme.com`
 * **14:25:29** — TCP handshake + HTTP GET to **192.0.2.172**
 
-![Hardening](screenshots/image%20(5).png)
+![Hardening](screenshots/image%20(3).png)
 
 ### Key Observations
 
@@ -41,7 +41,7 @@ The sequence suggests the user was moved—intentionally or through malicious co
 * The second IP belongs to a different address block, reinforcing the likelihood of a spoofed or malicious destination.
 * No handshake failures or resets appear — the traffic is clean, which aligns with controlled redirection rather than network instability.
 
-![Hardening](screenshots/image%20(3).png)
+![Hardening](screenshots/image%20(5).png)
 
 ### Likely Cause
 
@@ -52,5 +52,6 @@ The traffic pattern is consistent with a **malicious redirection** triggered by 
 ## Part 3: Recommended Remediation for Brute‑Force Attacks
 
 Apply **rate limiting** to authentication attempts to restrict repeated login attempts from automated tools.
+
 
 
