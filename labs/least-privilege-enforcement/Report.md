@@ -1,61 +1,38 @@
 # Activity Report: Least-Privilege Enforcement Access Control
 
-| Section 1: Identify the authorization issue in the environment |  |
-| :---- | ----- |
-| I identified that the `/home/researcher2/projects` directory contained several misconfigured permissions. One file allowed write access to all users, a restricted file allowed unnecessary group access, a hidden archived file permitted writes when it should be read‑only, and the `drafts` directory granted execute access to the group. These issues exposed project data to potential unauthorized modification and violated the principle of least privilege. |  |
-|  |  |
+---
 
-| Section 2: Document the incident |
-| :---- |
-| I first confirmed that I was working in the correct directory by running `pwd` and verifying that the current location was `/home/researcher2/projects`. This ensured that any permission changes I made would affect the intended files and directories. |
+## Section 1: Identify the Authorization Issue in the Environment
 
-|  |
-| !\[Screenshot 1 – Current working directory](screenshots/image%20(1).png) |
-|  |
+ I identified several permission misconfigurations within the `/home/researcher2/projects` directory. One file was world‑writable, a restricted file granted unnecessary group access, a hidden archived file allowed write permissions when it should have been read‑only, and the `drafts` directory incorrectly allowed group execute access. These issues created opportunities for unauthorized modification and violated the principle of least privilege. 
 
-|  |
-| Next, I listed all files, including hidden ones, with detailed permissions using `ls -la`. This output showed the project files, the `drafts` directory, and the hidden file `.project\\\_x.txt`. From this listing, I observed that `project\\\_k.txt` was world‑writable and `.project\\\_x.txt` allowed write access that should not have been granted. |
+---
 
-|  |
-| !\[Screenshot 2 – Full listing with permissions and hidden file](screenshots/image%20(3).png) |
-|  |
+## Section 2: Document the Incident
 
-|  |
-| I then focused on `project\\\_k.txt`, which had `rw-rw-rw-` permissions, meaning all users could write to it. To remove write access for others, I used `chmod o-w project\\\_k.txt` and confirmed that only the user and group retained write permissions. |
+A. I began by confirming that I was in the correct working directory using `pwd`, verifying that the current location was `/home/researcher2/projects`. This ensured that all permission changes would apply to the intended files and directories. 
+![Screenshot 1 – Current working directory](screenshots/image%20(1).png)
 
-|  |
-| !\[Screenshot 3 – project\_k.txt permissions before/after fixing world write](screenshots/image%20(4).png) |
-|  |
+B. Next, I listed all files—including hidden files—using `ls -la`. The output displayed the project files, the `drafts` directory, and the hidden file `.project_x.txt`. It showed the `project_k.txt` was world‑writable and `.project_x.txt` had write permissions that were unauthorized.
+![Screenshot 2 – Full listing with permissions and hidden file](screenshots/image%20(3).png)
 
-|  |
-| After that, I reviewed `project\\\_m.txt`, which was meant to be restricted so that only the user could read and write it. The permissions allowed the group to read the file. I corrected this by using `chmod g-r project\\\_m.txt`, ensuring that only the user had read and write access. |
+C. I then addressed `project_k.txt`, which had permissions set to `rw-rw-rw-`, allowing all users to write to the file. I removed write access for others using `chmod o-w project_k.txt`, ensuring that only the owner and group retained write permissions.
+![Screenshot 3 – project_k.txt permissions before/after fixing world write](screenshots/image%20(4).png)
 
-|  |
-| !\[Screenshot 4 – Adjusting group access on project\_m.txt](screenshots/image%20(5).png) |
-|  |
+D. After that, I reviewed `project_m.txt`, which was intended to be accessible only by the user. However, the group had read permissions. I corrected this by running `chmod g-r project_m.txt`, ensuring that only the user retained read and write access.
+![Screenshot 4 – Adjusting group access on project_m.txt](screenshots/image%20(5).png)
 
-|  |
-| I then turned to the hidden file `.project\\\_x.txt`. This file had been archived and should only be readable by the user and group, not writable. I used `chmod` to remove write permissions while keeping read access for the user and group, effectively enforcing read‑only status on the hidden file. |
+E. I then examined the hidden file `.project_x.txt`. As an archived file, it should have been read‑only for both the user and group. I removed write permissions while preserving read access, enforcing proper least‑privilege restrictions.
+![Screenshot 5 – Correcting permissions on .project_x.txt](screenshots/image%20(6).png)
 
-|  |
-| !\[Screenshot 5 – Correcting permissions on .project\_x.txt](screenshots/image%20(6).png) |
-|  |
+F. Finally, I inspected the `drafts` directory. Only `researcher2` should have been able to access it, meaning only the user should have execute permissions. I removed the group execute permission to ensure that only the owner could enter and use the directory.
+![Screenshot 6 – Updating execute permissions on drafts directory](screenshots/image%20(7).png)
 
-|  |
-| Finally, I examined the `drafts` directory. The requirement was that only `researcher2` should be able to access this directory and its contents, which means only the user should have execute permissions. I removed the group execute permission on `drafts` so that only the owner could enter and use the directory. |
+G. To conclude, I performed another detailed listing to verify all changes. I confirmed that no files were world‑writable, `project_m.txt` no longer granted group access, `.project_x.txt` was read‑only for the user and group, and the `drafts` directory no longer allowed group execution. This final verification confirmed that the environment now aligned with least‑privilege requirements.
+![Screenshot 7 – Final verification of file and directory permissions](screenshots/image%20(8).png)
 
-|  |
-| !\[Screenshot 6 – Updating execute permissions on drafts directory](screenshots/image%20(7).png) |
-|  |
+---
 
-|  |
-| To conclude, I ran another detailed listing to verify all changes. I confirmed that no files were world‑writable, `project\\\_m.txt` no longer granted group access, `.project\\\_x.txt` was read‑only for the user and group, and the `drafts` directory no longer allowed group execution. This final check validated that the permissions now aligned with the intended authorization policy. |
+## Section 3: Recommend One or More Remediations for Authorization Issues
 
-|  |
-| !\[Screenshot 7 – Final verification of file and directory permissions](screenshots/image%20(8).png) |
-|  |
-
-| Section 3: Recommend one or more remediations for authorization issues |
-| :---- |
-| I recommend implementing periodic permission audits to detect world‑writable files, overly permissive group access, and unnecessary execute permissions on sensitive directories. Enforcing least‑privilege policies will ensure that users and groups only have the access they need. I also recommend using automated scripts to flag risky permissions and providing training so users understand how to set and maintain secure file and directory permissions. |
-
+I recommend implementing periodic permission audits to detect world‑writable files, overly permissive group access, and unnecessary execute permissions on sensitive directories. Enforcing least‑privilege policies will ensure that users and groups only have the access they need. I also recommend using automated scripts to flag risky permissions and providing training so users understand how to set and maintain secure file and directory permissions.
