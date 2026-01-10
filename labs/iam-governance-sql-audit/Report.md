@@ -1,14 +1,12 @@
 # Automating Identity and Access Management (IAM) Compliance via SQL
 
-
-
 ### Project description
 
 This report documents SQL queries executed to support authentication oversight, geographic access validation, and department‑specific update governance. Each query was initiated in response to a distinct operational need and used logical operators (`AND`, `OR`, `NOT`) and pattern matching (`LIKE`) to isolate relevant records from authentication logs and employee datasets. The resulting outputs informed access governance decisions, risk assessments, and compliance workflows across multiple business units.
 
 ---
 
-## 1\. Evaluating after‑hours access governance
+## 1. Evaluating after‑hours access governance
 
 **Trigger:**  
 Unusual login failures surfaced in the monitoring dashboard outside approved operating hours, prompting a review of after‑hours authentication behavior for potential policy deviations.
@@ -16,20 +14,19 @@ Unusual login failures surfaced in the monitoring dashboard outside approved ope
 **Query**
 
 ```sql
-SELECT \*
-FROM log\_in\_attempts
-WHERE login\_time > '18:00'
+SELECT *
+FROM log_in_attempts
+WHERE login_time > '18:00'
   AND success = 0;
 ```
 
 **Operational purpose**  
-This filter isolates failed authentication attempts occurring after business hours. The combination of `login\_time > '18:00'` and `success = 0` narrows the dataset to events that represent elevated risk: unsuccessful access attempts outside normal operating windows.
+This filter isolates failed authentication attempts occurring after business hours. The combination of `login_time > '18:00'` and `success = 0` narrows the dataset to events that represent elevated risk: unsuccessful access attempts outside normal operating windows.
 
 ![Screenshot](screenshots/1.png)
 
 
-
-## 2\. Reviewing activity surrounding a flagged date
+## 2. Reviewing activity surrounding a flagged date
 
 **Trigger:**  
 A login event on 2022‑05‑09 displayed irregular characteristics. To determine whether it was isolated or part of a broader pattern, the review expanded to include the previous day.
@@ -37,10 +34,10 @@ A login event on 2022‑05‑09 displayed irregular characteristics. To determin
 **Query**
 
 ```sql
-SELECT \*
-FROM log\_in\_attempts
-WHERE login\_date = '2022-05-09'
-   OR login\_date = '2022-05-08';
+SELECT *
+FROM log_in_attempts
+WHERE login_date = '2022-05-09'
+   OR login_date = '2022-05-08';
 ```
 
 **Operational purpose**  
@@ -50,7 +47,7 @@ This filter retrieves all authentication activity surrounding the flagged date. 
 
 ---
 
-## 3\. Enforcing geographic access controls
+## 3. Enforcing geographic access controls
 
 **Trigger:**  
 Geolocation analysis ruled out Mexico as a relevant source of interest. To maintain alignment with geographic access policies, the dataset needed to exclude all Mexico‑based entries.
@@ -58,8 +55,8 @@ Geolocation analysis ruled out Mexico as a relevant source of interest. To maint
 **Query**
 
 ```sql
-SELECT \*
-FROM log\_in\_attempts
+SELECT *
+FROM log_in_attempts
 WHERE NOT country LIKE 'MEX%';
 ```
 
@@ -70,7 +67,7 @@ This filter excludes all login attempts originating from Mexico. The `LIKE 'MEX%
 
 ---
 
-## 4\. Scoping Marketing assets for update compliance
+## 4. Scoping Marketing assets for update compliance
 
 **Trigger:**  
 A maintenance ticket identified outdated software versions on systems assigned to Marketing personnel in the East building. A targeted list was required to ensure update compliance.
@@ -78,7 +75,7 @@ A maintenance ticket identified outdated software versions on systems assigned t
 **Query**
 
 ```sql
-SELECT \*
+SELECT *
 FROM employees
 WHERE department LIKE 'Marketing'
   AND office LIKE 'East-%';
@@ -91,7 +88,7 @@ This filter identifies Marketing personnel assigned to East‑building offices. 
 
 ---
 
-## 5\. Identifying high‑exposure departments for risk mitigation
+## 5. Identifying high‑exposure departments for risk mitigation
 
 **Trigger:**  
 A phishing campaign targeted Finance and Sales inboxes. The remediation plan required isolating all employees in these departments to validate system integrity.
@@ -99,7 +96,7 @@ A phishing campaign targeted Finance and Sales inboxes. The remediation plan req
 **Query**
 
 ```sql
-SELECT \*
+SELECT *
 FROM employees
 WHERE department LIKE 'Finance'
    OR department LIKE 'Sales';
@@ -112,7 +109,7 @@ This filter isolates employees in either Finance or Sales. Using `OR` consolidat
 
 ---
 
-## 6\. Validating patch compliance across non‑IT departments
+## 6. Validating patch compliance across non‑IT departments
 
 **Trigger:**  
 The IT department completed its updates ahead of schedule. The remaining task was to identify all other employees whose systems still required patching to maintain compliance coverage.
@@ -120,7 +117,7 @@ The IT department completed its updates ahead of schedule. The remaining task wa
 **Query**
 
 ```sql
-SELECT \*
+SELECT *
 FROM employees
 WHERE NOT department LIKE 'Information Technology';
 ```
@@ -142,13 +139,12 @@ These SQL queries supported authentication oversight, geographic access validati
 
 The SQL queries translated raw authentication and employee data into targeted oversight actions. Each query supported a specific control objective by tightening visibility into access behavior, geographic patterns, and update compliance.
 
-* **Reinforced access control** by isolating failed after‑hours logins for rapid deviation detection.
-* **Improved incident clarity** through expanded date‑range analysis around the flagged event.
-* **Focused geographic review** by excluding non‑relevant Mexico‑based activity.
-* **Streamlined update compliance** by pinpointing outdated Marketing assets in the East building.
-* **Accelerated phishing response** by consolidating Finance and Sales personnel for integrity checks.
-* **Maintained patch coverage** by filtering out already‑updated IT systems to prioritize remaining assets.
+- **Reinforced access control** by isolating failed after‑hours logins for rapid deviation detection.  
+- **Improved incident clarity** through expanded date‑range analysis around the flagged event.  
+- **Focused geographic review** by excluding non‑relevant Mexico‑based activity.  
+- **Streamlined update compliance** by pinpointing outdated Marketing assets in the East building.  
+- **Accelerated phishing response** by consolidating Finance and Sales personnel for integrity checks.  
+- **Maintained patch coverage** by filtering out already‑updated IT systems to prioritize remaining assets.
 
 **Overall, these SQL‑driven insights strengthened identity and access oversight by enabling precise scoping, faster triage, and more efficient risk mitigation.**
-
 
