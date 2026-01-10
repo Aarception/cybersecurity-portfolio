@@ -43,7 +43,7 @@ WHERE login_date = '2022-05-09'
 **Operational purpose**  
 This filter retrieves all authentication activity surrounding the flagged date. Using `OR` expands the scope to include both the incident date and the preceding day, enabling a complete review of the 48‑hour window for related activity or precursor events.
 
-![Screenshot](screenshots/2.png)
+![Screenshot](screenshots/%202.png)
 
 ---
 
@@ -63,7 +63,7 @@ WHERE NOT country LIKE 'MEX%';
 **Operational purpose**  
 This filter excludes all login attempts originating from Mexico. The `LIKE 'MEX%'` pattern captures both `MEX` and `MEXICO`, and applying `NOT` removes those entries, producing a dataset focused solely on foreign authentication sources relevant to the investigation.
 
-![Screenshot](screenshots/3.png)
+![Screenshot](screenshots/%203.png)
 
 ---
 
@@ -84,7 +84,7 @@ WHERE department LIKE 'Marketing'
 **Operational purpose**  
 This filter identifies Marketing personnel assigned to East‑building offices. The combination of `department LIKE '%Marketing%'` and `office LIKE 'East-%'` ensures the result set includes only the machines within the targeted department and physical location for the required update.
 
-![Screenshot](screenshots/4.png)
+![Screenshot](screenshots/%204.png)
 
 ---
 
@@ -105,7 +105,7 @@ WHERE department LIKE 'Finance'
 **Operational purpose**  
 This filter isolates employees in either Finance or Sales. Using `OR` consolidates both departments into a single query, enabling efficient scoping for the update cycle assigned to these groups.
 
-![Screenshot](screenshots/5.png)
+![Screenshot](screenshots/%205.png)
 
 ---
 
@@ -125,7 +125,7 @@ WHERE NOT department LIKE 'Information Technology';
 **Operational purpose**  
 This filter excludes the Information Technology department, which has already completed the required update. Applying `NOT` ensures the result set contains only employees whose systems remain pending, allowing the team to focus on outstanding assets.
 
-![Screenshot](screenshots/6.png)
+![Screenshot](screenshots/%206.png)
 
 ---
 
@@ -147,4 +147,5 @@ The SQL queries translated raw authentication and employee data into targeted ov
 - **Maintained patch coverage** by filtering out already‑updated IT systems to prioritize remaining assets.
 
 **Overall, these SQL‑driven insights strengthened identity and access oversight by enabling precise scoping, faster triage, and more efficient risk mitigation.**
+
 
